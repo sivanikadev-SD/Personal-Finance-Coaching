@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - FinCoach</title>
+    <meta name="description"
+        content="Explore FinCoach's expert financial coaching services including budgeting, debt elimination, and investment strategy.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%230F172A'/><polyline points='10,70 30,45 50,55 70,25 90,35' stroke='%2314B8A6' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/><polyline points='75,25 90,25 90,40' stroke='%2314B8A6' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><i class="fa-solid fa-chart-line"></i> FinCoach</a>
+            <div class="nav-toggle"><i class="fa-solid fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="home2.html">Home 2</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="dashboard.html" style="font-weight: 600;">Dashboard</a></li>
+                <li><a href="admin-dashboard.html" style="font-weight: 600;">Admin</a></li>
+                <li><a href="login.html" class="btn btn-primary"
+                        style="padding: 0.5rem 1.25rem;color:var(--primary-color) ;">Sign
+                        In</a></li>
+                <li class="theme-controls">
+                    <button id="theme-toggle" class="control-btn" title="Toggle Dark/Light Mode"><i
+                            class="fa-solid fa-moon"></i></button>
+                    <button id="dir-toggle" class="control-btn" title="Toggle RTL/LTR"><i
+                            class="fa-solid fa-right-left"></i> RTL</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="page-banner" aria-label="Services hero banner"
+        style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1920');">
+        <div class="banner-content animate-fade-in">
+            <span class="subtitle"><i class="fa-solid fa-briefcase"></i> What We Do</span>
+            <h1>Our Expert Services</h1>
+            <p>Comprehensive financial strategies tailored to your unique goals and lifestyle. From budgeting basics to
+                advanced investment planning.</p>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Services Categories -->
+        <section id="budgeting" class="section-padding bg-white">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-label">Service Areas</span>
+                    <h2>How We Can Support You</h2>
+                    <p>Expert guidance across all areas of personal and business finance.</p>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="grid-3">
+                    <div id="individuals" class="card feature-card animate-on-scroll delay-1">
+                        <div class="icon-box"><i class="fa-solid fa-user"></i></div>
+                        <h3>For Individuals</h3>
+                        <p>One-on-one coaching designed to help you budget, save, pay off debt, and start investing.
+                            Whether
+                            you're fresh out of college or mid-career, we meet you where you are.</p>
+                        <ul class="check-list">
+                            <li><i class="fa-solid fa-check"></i> Personal budget creation</li>
+                            <li><i class="fa-solid fa-check"></i> Emergency fund planning</li>
+                            <li><i class="fa-solid fa-check"></i> Credit score improvement</li>
+                        </ul>
+                    </div>
+                    <div id="entrepreneurs" class="card feature-card animate-on-scroll delay-2">
+                        <div class="icon-box"><i class="fa-solid fa-building"></i></div>
+                        <h3>For Entrepreneurs</h3>
+                        <p>Separate personal and business finances, plan for taxes, and build sustainable cash flow. We
+                            help
+                            small business owners make smarter financial decisions.</p>
+                        <ul class="check-list">
+                            <li><i class="fa-solid fa-check"></i> Business budgeting</li>
+                            <li><i class="fa-solid fa-check"></i> Tax preparation strategy</li>
+                            <li><i class="fa-solid fa-check"></i> Revenue forecasting</li>
+                        </ul>
+                    </div>
+                    <div id="families" class="card feature-card animate-on-scroll delay-3">
+                        <div class="icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+                        <h3>For Families</h3>
+                        <p>Align family financial goals, plan for education, and build generational wealth together. We
+                            work
+                            with both partners to ensure everyone is on the same page.</p>
+                        <ul class="check-list">
+                            <li><i class="fa-solid fa-check"></i> Joint budget management</li>
+                            <li><i class="fa-solid fa-check"></i> 529 education planning</li>
+                            <li><i class="fa-solid fa-check"></i> Estate planning basics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Detailed Offerings -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-label">Deep-Dive Services</span>
+                    <h2>What's Included</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="service-detail-row animate-on-scroll">
+                    <div class="service-detail-col">
+                        <div id="coaching" class="service-detail-item">
+                            <div class="icon-box"><i class="fa-solid fa-comments"></i></div>
+                            <div>
+                                <h3>1-on-1 Coaching Sessions</h3>
+                                <p>Private 60-minute video or phone sessions covering budgeting, debt payoff strategies,
+                                    investment fundamentals, and behavioral finance. Personalized to your goals.</p>
+                            </div>
+                        </div>
+                        <div id="audit" class="service-detail-item">
+                            <div class="icon-box"><i class="fa-solid fa-magnifying-glass-dollar"></i></div>
+                            <div>
+                                <h3>Financial Audit</h3>
+                                <p>A deep analysis of your income, spending, debts, and net worth. We document
+                                    everything,
+                                    identify spending leaks, and give you a full report with action items.</p>
+                            </div>
+                        </div>
+                        <div id="investing" class="service-detail-item">
+                            <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                            <div>
+                                <h3>Investment Guidance</h3>
+                                <p>From opening your first brokerage account to rebalancing a 6-figure portfolio — we
+                                    guide
+                                    you through stocks, bonds, ETFs, and retirement accounts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-detail-col">
+                        <div class="session-cover-card">
+                            <h3><i class="fa-solid fa-star"></i> What Our Sessions Cover</h3>
+                            <ul class="session-cover-list">
+                                <li><i class="fa-solid fa-check-circle"></i> Monthly budget review &amp; optimization
+                                </li>
+                                <li><i class="fa-solid fa-check-circle"></i> Debt snowball/avalanche progress tracking
+                                </li>
+                                <li><i class="fa-solid fa-check-circle"></i> Savings goal milestones</li>
+                                <li><i class="fa-solid fa-check-circle"></i> Retirement projection updates</li>
+                                <li><i class="fa-solid fa-check-circle"></i> Insurance &amp; protection review</li>
+                                <li><i class="fa-solid fa-check-circle"></i> Accountability &amp; mindset coaching</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="retirement" class="section-padding bg-white">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-label">Plans &amp; Pricing</span>
+                    <h2>Investment In Your Future</h2>
+                    <p>Flexible plans to fit every budget. Your first consultation is always free.</p>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="grid-3">
+                    <div class="pricing-card animate-on-scroll delay-1">
+                        <h3>Single Session</h3>
+                        <p>One-time deep-dive</p>
+                        <div class="pricing-amount">$149</div>
+                        <p class="pricing-period">per session</p>
+                        <ul class="pricing-features">
+                            <li><i class="fa-solid fa-check"></i> 60-Min Video Call</li>
+                            <li><i class="fa-solid fa-check"></i> Personalized Action Plan</li>
+                            <li><i class="fa-solid fa-check"></i> Email Follow-Up</li>
+                        </ul>
+                        <a href="contact.html?plan=single" class="btn btn-secondary" style="width: 100%;">Book Now</a>
+                    </div>
+                    <div class="pricing-card featured animate-on-scroll delay-2">
+                        <div class="pricing-badge">Best Value</div>
+                        <h3>Monthly Coaching</h3>
+                        <p>Ongoing transformation</p>
+                        <div class="pricing-amount">$399</div>
+                        <p class="pricing-period">/month</p>
+                        <ul class="pricing-features">
+                            <li><i class="fa-solid fa-check"></i> 4 Coaching Sessions/Month</li>
+                            <li><i class="fa-solid fa-check"></i> Custom Financial Dashboard</li>
+                            <li><i class="fa-solid fa-check"></i> Priority Chat Support</li>
+                            <li><i class="fa-solid fa-check"></i> Monthly Progress Report</li>
+                        </ul>
+                        <a href="contact.html?plan=monthly" class="btn btn-primary" style="width: 100%;">Start
+                            Monthly</a>
+                    </div>
+                    <div class="pricing-card animate-on-scroll delay-3">
+                        <h3>Family Package</h3>
+                        <p>For couples &amp; families</p>
+                        <div class="pricing-amount">$599</div>
+                        <p class="pricing-period">/month</p>
+                        <ul class="pricing-features">
+                            <li><i class="fa-solid fa-check"></i> Joint Coaching Sessions</li>
+                            <li><i class="fa-solid fa-check"></i> Family Budget Strategy</li>
+                            <li><i class="fa-solid fa-check"></i> Education Fund Planning</li>
+                            <li><i class="fa-solid fa-check"></i> Unlimited Support</li>
+                        </ul>
+                        <a href="contact.html?plan=family" class="btn btn-secondary" style="width: 100%;">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-label">Common Questions</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div style="max-width: 750px; margin: 0 auto;">
+                    <div class="faq-item active">
+                        <div class="faq-question">
+                            How is financial coaching different from financial advising?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Financial advisors typically manage your investments for you. A financial coach educates
+                                and
+                                empowers you to make your own informed decisions — we focus on behavior, habits, and
+                                building financial literacy.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Do I need a minimum income to work with you?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely not! We work with people at all income levels. Our goal is to help you make
+                                the
+                                most of what you have, regardless of your starting point.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How long before I see results?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Most clients see meaningful progress within 30-60 days — whether that's a clear budget, a
+                                debt payoff plan, or their first investment. Major milestones like becoming debt-free
+                                depend
+                                on your starting position, but we set realistic timelines together.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Can I cancel my subscription anytime?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! There are no long-term contracts. You can cancel your monthly plan at any time with
+                                30
+                                days' notice. We're confident you'll want to stay.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Is my financial data safe?
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely. We use 256-bit SSL encryption and never share your data with third parties.
+                                Your
+                                financial information is stored securely and is only visible to you and your assigned
+                                coach.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><i class="fa-solid fa-chart-line"></i> FinCoach</a>
+                    <p>Empowering individuals and families to achieve lasting financial freedom through expert coaching
+                        and personalized strategies.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html">Sign In</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#budgeting">Budgeting</a></li>
+                        <li><a href="services.html#coaching">Debt Payoff</a></li>
+                        <li><a href="services.html#investing">Investing</a></li>
+                        <li><a href="services.html#retirement">Retirement</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:hello@fincoach.com"><i class="fa-solid fa-envelope"
+                                    style="margin-right:0.5rem;color:var(--accent);"></i>hello@fincoach.com</a></li>
+                        <li><a href="tel:+15551234567"><i class="fa-solid fa-phone"
+                                    style="margin-right:0.5rem;color:var(--accent);"></i>+1 (555) 123-4567</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FinCoach. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

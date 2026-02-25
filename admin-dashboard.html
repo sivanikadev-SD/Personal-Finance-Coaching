@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - FinCoach</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%230F172A'/><polyline points='10,70 30,45 50,55 70,25 90,35' stroke='%2314B8A6' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/><polyline points='75,25 90,25 90,40' stroke='%2314B8A6' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Admin-specific styles */
+        .admin-badge {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-full);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-left: 0.5rem;
+        }
+
+        .admin-welcome {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2rem 2.5rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-welcome::after {
+            content: '';
+            position: absolute;
+            right: -40px;
+            bottom: -40px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(20, 184, 166, 0.12);
+        }
+
+        .admin-welcome h2 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .admin-welcome p {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(20, 184, 166, 0.05));
+            color: var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover .stat-icon {
+            background: var(--gradient-accent);
+            color: white;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1;
+            margin: 0.75rem 0 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--secondary);
+        }
+
+        .stat-change {
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .stat-change.up {
+            color: #10b981;
+        }
+
+        .stat-change.down {
+            color: #f87171;
+        }
+
+        /* Health bars */
+        .health-meter {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .health-meter:last-child {
+            margin-bottom: 0;
+        }
+
+        .health-label {
+            min-width: 120px;
+            font-size: 0.85rem;
+            color: var(--secondary);
+        }
+
+        .health-bar-wrap {
+            flex: 1;
+            height: 8px;
+            background: var(--surface);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .health-bar-fill {
+            height: 100%;
+            border-radius: var(--radius-full);
+            transition: width 0.5s ease;
+        }
+
+        .health-value {
+            min-width: 40px;
+            text-align: right;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Table styles */
+        .admin-table-wrap {
+            overflow-x: auto;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .admin-table th,
+        .admin-table td {
+            text-align: left;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        .admin-table th {
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--surface);
+        }
+
+        .admin-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        .admin-table tbody tr:hover {
+            background: var(--surface);
+        }
+
+        .admin-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .user-cell-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: var(--gradient-accent);
+            color: white;
+        }
+
+        .user-cell-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .user-cell-email {
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-badge.active {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .status-badge.inactive {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+
+        .status-badge.suspended {
+            background: rgba(248, 113, 113, 0.1);
+            color: #f87171;
+        }
+
+        .plan-badge {
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .plan-badge.premium {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.12), rgba(45, 212, 191, 0.12));
+            color: var(--accent);
+        }
+
+        .plan-badge.basic {
+            background: var(--surface);
+            color: var(--secondary);
+        }
+
+        .action-btn {
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: var(--secondary);
+            padding: 0.35rem;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            color: var(--accent);
+            background: rgba(20, 184, 166, 0.08);
+        }
+
+        .action-btn.danger:hover {
+            color: #f87171;
+            background: rgba(248, 113, 113, 0.08);
+        }
+
+        /* Content cards */
+        .content-asset-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .content-asset-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .asset-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .asset-icon.pdf {
+            background: rgba(248, 113, 113, 0.1);
+            color: #f87171;
+        }
+
+        .asset-icon.video {
+            background: rgba(20, 184, 166, 0.1);
+            color: var(--accent);
+        }
+
+        .asset-icon.quiz {
+            background: rgba(168, 85, 247, 0.1);
+            color: #a855f7;
+        }
+
+        .asset-meta {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin-top: 0.25rem;
+        }
+
+        .asset-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Toggle switch */
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+            background: #cbd5e1;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            left: 3px;
+            bottom: 3px;
+            border-radius: 50%;
+            background: white;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch input:checked+.toggle-slider {
+            background: var(--accent);
+        }
+
+        .toggle-switch input:checked+.toggle-slider::before {
+            transform: translateX(20px);
+        }
+
+        .setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.875rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .setting-row:last-child {
+            border-bottom: none;
+        }
+
+        .setting-info {
+            flex: 1;
+        }
+
+        .setting-info strong {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .setting-info span {
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .admin-welcome {
+                padding: 1.5rem;
+            }
+
+            .stat-value {
+                font-size: 1.4rem;
+            }
+
+            .admin-table th,
+            .admin-table td {
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            .health-label {
+                min-width: 80px;
+                font-size: 0.8rem;
+            }
+
+            .dashboard-header {
+                padding: 1rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 0.75rem;
+            }
+
+            .stat-card {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard-layout">
+
+        <!-- Sidebar Navigation (Admin) -->
+        <aside class="sidebar" id="sidebar">
+            <a href="index.html" class="sidebar-logo">
+                <i class="fa-solid fa-chart-line"></i> FinCoach <span class="admin-badge">Admin</span>
+            </a>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview"><i class="fa-solid fa-gauge"></i>
+                    Overview</a>
+                <a href="#" class="nav-item" data-section="users"><i class="fa-solid fa-users"></i> Users</a>
+                <a href="#" class="nav-item" data-section="content"><i class="fa-solid fa-layer-group"></i> Content</a>
+                <a href="#" class="nav-item" data-section="analytics"><i class="fa-solid fa-chart-bar"></i>
+                    Analytics</a>
+                <a href="#" class="nav-item" data-section="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+                <a href="#" id="logout-btn" style="margin-top: auto; color: #f87171;"><i
+                        class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Dashboard Header -->
+            <header class="dashboard-header">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div class="dashboard-toggle" id="mobile-toggle"><i class="fa-solid fa-bars"></i></div>
+                    <h2 id="section-title" style="margin: 0; font-size: 1.25rem;">Admin Portal</h2>
+                </div>
+                <div class="user-profile">
+                    <div class="theme-controls" style="margin-right: 1rem;">
+                        <button id="theme-toggle" class="control-btn" title="Toggle Dark/Light Mode"><i
+                                class="fa-solid fa-moon"></i></button>
+                        <button id="dir-toggle" class="control-btn" title="Toggle RTL/LTR"><i
+                                class="fa-solid fa-right-left"></i> RTL</button>
+                    </div>
+                    <span style="font-size: 0.9rem;">Admin Mode</span>
+                    <div class="avatar"><img src="./images/man.webp" alt="Admin"
+                            style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;"></div>
+                </div>
+            </header>
+
+            <!-- Sections Container -->
+            <div id="admin-sections">
+
+                <!-- 1. Overview Section -->
+                <section id="overview" class="content-section">
+                    <div class="admin-welcome">
+                        <h2>Admin Dashboard 🛡️</h2>
+                        <p>Monitor platform health, manage users, and track growth metrics at a glance.</p>
+                    </div>
+
+                    <div class="grid-3"
+                        style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 2rem;">
+                        <div class="stat-card">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                                <span class="stat-change up"><i class="fa-solid fa-arrow-up"></i> 12%</span>
+                            </div>
+                            <div class="stat-value">1,245</div>
+                            <div class="stat-label">Total Users</div>
+                        </div>
+                        <div class="stat-card">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="stat-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+                                <span class="stat-change up"><i class="fa-solid fa-arrow-up"></i> 8%</span>
+                            </div>
+                            <div class="stat-value">$84,300</div>
+                            <div class="stat-label">Revenue (YTD)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="stat-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                            </div>
+                            <div class="stat-value">98%</div>
+                            <div class="stat-label">Coach Response Rate</div>
+                        </div>
+                    </div>
+
+                    <!-- System Health -->
+                    <div class="dashboard-card" style="padding: 1.5rem;">
+                        <h4 style="margin-bottom: 1.25rem;"><i class="fa-solid fa-server"
+                                style="color: var(--accent); margin-right: 0.5rem;"></i> System Health</h4>
+                        <div class="health-meter">
+                            <span class="health-label">Server Load</span>
+                            <div class="health-bar-wrap">
+                                <div class="health-bar-fill" style="width: 24%; background: #10b981;"></div>
+                            </div>
+                            <span class="health-value" style="color: #10b981;">24%</span>
+                        </div>
+                        <div class="health-meter">
+                            <span class="health-label">Storage Used</span>
+                            <div class="health-bar-wrap">
+                                <div class="health-bar-fill" style="width: 62%; background: #f59e0b;"></div>
+                            </div>
+                            <span class="health-value" style="color: #f59e0b;">62%</span>
+                        </div>
+                        <div class="health-meter">
+                            <span class="health-label">Memory</span>
+                            <div class="health-bar-wrap">
+                                <div class="health-bar-fill" style="width: 38%; background: var(--accent);"></div>
+                            </div>
+                            <span class="health-value" style="color: var(--accent);">38%</span>
+                        </div>
+                        <div class="health-meter">
+                            <span class="health-label">API Uptime</span>
+                            <div class="health-bar-wrap">
+                                <div class="health-bar-fill" style="width: 99.9%; background: #10b981;"></div>
+                            </div>
+                            <span class="health-value" style="color: #10b981;">99.9%</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. User Management Section -->
+                <section id="users" class="content-section" style="display: none;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                        <h3 style="margin: 0;">User Directory</h3>
+                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <input type="text" placeholder="Search users..."
+                                style="padding: 0.5rem 1rem; border: 1.5px solid var(--border-color); border-radius: var(--radius-full); font-size: 0.85rem; font-family: var(--font-body); background: var(--card-bg); color: var(--text-dark);">
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;"><i
+                                    class="fa-solid fa-plus"></i> Add User</button>
+                        </div>
+                    </div>
+                    <div class="admin-table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Status</th>
+                                    <th>Plan</th>
+                                    <th>Joined</th>
+                                    <th>Last Active</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-cell-avatar">SJ</div>
+                                            <div>
+                                                <div class="user-cell-name">Sarah Johnson</div>
+                                                <div class="user-cell-email">sarah.j@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge active"><i class="fa-solid fa-circle"
+                                                style="font-size: 0.5rem;"></i> Active</span></td>
+                                    <td><span class="plan-badge premium">Premium</span></td>
+                                    <td>Oct 12, 2024</td>
+                                    <td>2 hours ago</td>
+                                    <td>
+                                        <button class="action-btn" title="View"><i class="fa-solid fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="action-btn danger" title="Suspend"><i
+                                                class="fa-solid fa-ban"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-cell-avatar">MC</div>
+                                            <div>
+                                                <div class="user-cell-name">Michael Chen</div>
+                                                <div class="user-cell-email">m.chen@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge active"><i class="fa-solid fa-circle"
+                                                style="font-size: 0.5rem;"></i> Active</span></td>
+                                    <td><span class="plan-badge basic">Basic</span></td>
+                                    <td>Oct 10, 2024</td>
+                                    <td>1 day ago</td>
+                                    <td>
+                                        <button class="action-btn" title="View"><i class="fa-solid fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="action-btn danger" title="Suspend"><i
+                                                class="fa-solid fa-ban"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-cell-avatar">LW</div>
+                                            <div>
+                                                <div class="user-cell-name">Lisa Wang</div>
+                                                <div class="user-cell-email">lisa.wang@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge inactive"><i class="fa-solid fa-circle"
+                                                style="font-size: 0.5rem;"></i> Inactive</span></td>
+                                    <td><span class="plan-badge premium">Premium</span></td>
+                                    <td>Sep 28, 2024</td>
+                                    <td>2 weeks ago</td>
+                                    <td>
+                                        <button class="action-btn" title="View"><i class="fa-solid fa-eye"></i></button>
+                                        <button class="action-btn" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="action-btn danger" title="Suspend"><i
+                                                class="fa-solid fa-ban"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 3. Content Management Section -->
+                <section id="content" class="content-section" style="display: none;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                        <h3 style="margin: 0;">Curriculum & Assets</h3>
+                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;"><i
+                                class="fa-solid fa-folder-plus"></i> New Module</button>
+                    </div>
+                    <div class="grid-3">
+                        <div class="content-asset-card">
+                            <div class="asset-icon pdf"><i class="fa-solid fa-file-pdf"></i></div>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.25rem;">Investment Basics v4</h4>
+                            <div class="asset-meta">PDF · Shared with 452 users</div>
+                            <div class="asset-actions">
+                                <button class="action-btn"><i class="fa-solid fa-pen"></i> Edit</button>
+                                <button class="action-btn danger"><i class="fa-solid fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                        <div class="content-asset-card">
+                            <div class="asset-icon video"><i class="fa-solid fa-video"></i></div>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.25rem;">Budgeting Workshop Live</h4>
+                            <div class="asset-meta">MP4 · Module 2 Resource</div>
+                            <div class="asset-actions">
+                                <button class="action-btn"><i class="fa-solid fa-pen"></i> Edit</button>
+                                <button class="action-btn danger"><i class="fa-solid fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                        <div class="content-asset-card">
+                            <div class="asset-icon quiz"><i class="fa-solid fa-clipboard-question"></i></div>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.25rem;">Module 1 Assessment</h4>
+                            <div class="asset-meta">Quiz · 15 Questions</div>
+                            <div class="asset-actions">
+                                <button class="action-btn"><i class="fa-solid fa-pen"></i> Edit</button>
+                                <button class="action-btn danger"><i class="fa-solid fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Analytics Section -->
+                <section id="analytics" class="content-section" style="display: none;">
+                    <h3 style="margin-bottom: 1.5rem;">Platform Analytics</h3>
+
+                    <div class="grid-3"
+                        style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 2rem;">
+                        <div class="stat-card" style="text-align: center;">
+                            <div class="stat-icon" style="margin: 0 auto;"><i class="fa-solid fa-user-plus"></i></div>
+                            <div class="stat-value" style="margin-top: 0.75rem;">48</div>
+                            <div class="stat-label">New Users This Month</div>
+                        </div>
+                        <div class="stat-card" style="text-align: center;">
+                            <div class="stat-icon" style="margin: 0 auto;"><i class="fa-solid fa-clock"></i></div>
+                            <div class="stat-value" style="margin-top: 0.75rem;">12.5</div>
+                            <div class="stat-label">Avg. Hours per User</div>
+                        </div>
+                        <div class="stat-card" style="text-align: center;">
+                            <div class="stat-icon" style="margin: 0 auto;"><i class="fa-solid fa-star"></i></div>
+                            <div class="stat-value" style="margin-top: 0.75rem;">4.9</div>
+                            <div class="stat-label">Avg. Coach Rating</div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card" style="padding: 1.5rem;">
+                        <h4 style="margin-bottom: 1rem;">Revenue Trend</h4>
+                        <div
+                            style="background: var(--surface); border-radius: var(--radius-lg); padding: 2rem; min-height: 200px; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--border-color);">
+                            <div style="text-align: center; color: var(--secondary);">
+                                <i class="fa-solid fa-chart-line"
+                                    style="font-size: 3rem; color: var(--accent); opacity: 0.4; display: block; margin-bottom: 1rem;"></i>
+                                <p>Revenue chart will appear here with real data integration.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. Settings Section -->
+                <section id="settings" class="content-section" style="display: none;">
+                    <h3 style="margin-bottom: 1.5rem;">System Settings</h3>
+                    <div class="dashboard-card" style="padding: 1.5rem;">
+                        <form id="admin-settings-form">
+                            <div
+                                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                                <div>
+                                    <h4 style="margin-bottom: 1rem; color: var(--secondary);"><i
+                                            class="fa-solid fa-bell"
+                                            style="color: var(--accent); margin-right: 0.5rem;"></i> Notifications</h4>
+                                    <div class="setting-row">
+                                        <div class="setting-info">
+                                            <strong>New User Registrations</strong>
+                                            <span>Get notified of new signups</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="setting-row">
+                                        <div class="setting-info">
+                                            <strong>Coach-Client Messages</strong>
+                                            <span>Monitor coaching conversations</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="setting-row">
+                                        <div class="setting-info">
+                                            <strong>Maintenance Alerts</strong>
+                                            <span>System downtime notifications</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 1rem; color: var(--secondary);"><i
+                                            class="fa-solid fa-shield-halved"
+                                            style="color: var(--accent); margin-right: 0.5rem;"></i> Security</h4>
+                                    <div class="form-group">
+                                        <label>Session Timeout (minutes)</label>
+                                        <input type="number" value="30">
+                                    </div>
+                                    <div class="setting-row">
+                                        <div class="setting-info">
+                                            <strong>Force 2FA for Admins</strong>
+                                            <span>Require two-factor authentication</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="setting-row">
+                                        <div class="setting-info">
+                                            <strong>IP Whitelist</strong>
+                                            <span>Restrict admin access by IP</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 1rem; flex-wrap: wrap;">
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Save
+                                    Configuration</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = document.querySelectorAll('.content-section');
+            const sectionTitle = document.getElementById('section-title');
+            const sidebar = document.getElementById('sidebar');
+            const mobileToggle = document.getElementById('mobile-toggle');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+
+                    const targetId = item.getAttribute('data-section');
+                    sections.forEach(section => {
+                        section.style.display = section.id === targetId ? 'block' : 'none';
+                    });
+
+                    const label = item.textContent.trim();
+                    sectionTitle.textContent = label === 'Overview' ? 'Admin Portal' : label;
+
+                    if (window.innerWidth <= 1024) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('active');
+                });
+            }
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024 &&
+                    sidebar.classList.contains('active') &&
+                    !sidebar.contains(e.target) &&
+                    !mobileToggle.contains(e.target)) {
+                    sidebar.classList.remove('active');
+                }
+            });
+
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (confirm('Are you sure you want to logout from Admin Portal?')) {
+                        alert('Admin session ended.');
+                        window.location.href = 'index.html';
+                    }
+                });
+            }
+
+            const settingsForm = document.getElementById('admin-settings-form');
+            if (settingsForm) {
+                settingsForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('System configuration updated successfully!');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FinCoach</title>
+    <meta name="description"
+        content="Learn about FinCoach's mission, team, and proven methodology for financial coaching.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%230F172A'/><polyline points='10,70 30,45 50,55 70,25 90,35' stroke='%2314B8A6' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/><polyline points='75,25 90,25 90,40' stroke='%2314B8A6' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><i class="fa-solid fa-chart-line"></i> FinCoach</a>
+            <div class="nav-toggle"><i class="fa-solid fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="home2.html">Home 2</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="dashboard.html" style="font-weight: 600;">Dashboard</a></li>
+                <li><a href="admin-dashboard.html" style="font-weight: 600;">Admin</a></li>
+                <li><a href="login.html" class="btn btn-primary"
+                        style="padding: 0.5rem 1.25rem;color:var(--primary-color) ;">Sign
+                        In</a></li>
+                <li class="theme-controls">
+                    <button id="theme-toggle" class="control-btn" title="Toggle Dark/Light Mode"><i
+                            class="fa-solid fa-moon"></i></button>
+                    <button id="dir-toggle" class="control-btn" title="Toggle RTL/LTR"><i
+                            class="fa-solid fa-right-left"></i> RTL</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <header class="page-banner"
+        style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1920');">
+        <div class="banner-content animate-fade-in">
+            <span class="subtitle"><i class="fa-solid fa-heart"></i> Our Story</span>
+            <h1>Empowering Financial Freedom</h1>
+            <p>More than just coaching — we are your partners in building a secure, prosperous future for you and your
+                family.</p>
+        </div>
+    </header>
+
+    <!-- Mission & Philosophy -->
+    <section class="section-padding bg-white">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4rem;">
+                <div style="flex: 1; min-width: 300px;" class="animate-on-scroll">
+                    <span class="section-label" style="display: block; margin-bottom: 1rem;">Our Mission</span>
+                    <h2>Making Wealth-Building Accessible to Everyone</h2>
+                    <p style="margin-bottom: 1.5rem;">We believe that with the right knowledge and habits, anyone can
+                        achieve financial independence — regardless of their starting point. Our mission is to demystify
+                        finance and empower people to take control of their money.</p>
+                    <p style="margin-bottom: 2rem;">Founded in 2016, FinCoach has helped over 2,000 individuals and
+                        families transform their relationship with money through personalized coaching and practical,
+                        jargon-free strategies.</p>
+                    <a href="contact.html" class="btn btn-primary"><i class="fa-solid fa-phone"></i> Talk to Us</a>
+                </div>
+                <div style="flex: 1; min-width: 300px;" class="animate-on-scroll delay-2">
+                    <div class="card" style="background-color: var(--surface);">
+                        <h3><i class="fa-solid fa-compass" style="color: var(--accent); margin-right: 0.5rem;"></i> Our
+                            Philosophy</h3>
+                        <ul style="margin-top: 1rem;">
+                            <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: flex-start;">
+                                <i class="fa-solid fa-check-circle text-accent" style="margin-top: 0.2rem;"></i>
+                                <div><strong>Simplicity over complexity.</strong> Financial planning shouldn't require a
+                                    PhD. We break down strategies into actionable steps.</div>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: flex-start;">
+                                <i class="fa-solid fa-check-circle text-accent" style="margin-top: 0.2rem;"></i>
+                                <div><strong>Long-term consistency beats short-term intensity.</strong> Sustainable
+                                    habits lead to lasting wealth — not get-rich-quick schemes.</div>
+                            </li>
+                            <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                                <i class="fa-solid fa-check-circle text-accent" style="margin-top: 0.2rem;"></i>
+                                <div><strong>Education is the best investment.</strong> When you understand your money,
+                                    you make better decisions for life.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Our People</span>
+                <h2>Meet the Team</h2>
+                <p>Experienced professionals dedicated to your financial success.</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="grid-3">
+                <div class="card team-card animate-on-scroll delay-1">
+                    <img src="./images/download.jfif" alt="Alex Morgan - Lead Coach">
+                    <h3>Alex Morgan</h3>
+                    <p class="role">Lead Coach & Founder</p>
+                    <p style="font-size: 0.9rem;">CFP® certified with 15,000+ hours of coaching experience. Former Wall
+                        Street analyst turned financial educator.</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="card team-card animate-on-scroll delay-2">
+                    <img src="./images/women.jpg" alt="Jamie Lee - Investment Specialist">
+                    <h3>Jamie Lee</h3>
+                    <p class="role">Investment Specialist</p>
+                    <p style="font-size: 0.9rem;">Expert in portfolio construction, risk management, and retirement
+                        planning. CFA charterholder with 12 years of experience.</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="card team-card animate-on-scroll delay-3">
+                    <img src="./images/man.webp" alt="Taylor Smith - Client Success">
+                    <h3>Taylor Smith</h3>
+                    <p class="role">Client Success Manager</p>
+                    <p style="font-size: 0.9rem;">Ensuring every client feels supported and heard. 8 years in client
+                        relations with a passion for financial literacy.</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Method — Timeline -->
+    <section class="section-padding bg-white">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">How We Work</span>
+                <h2>Our Proven 4-Step Method</h2>
+                <p>A structured approach that has helped thousands achieve financial freedom.</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="timeline animate-on-scroll">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3><span class="badge badge-accent">Step 1</span> Discovery</h3>
+                        <p>We uncover your "why" — your motivations, fears, and dreams. We set clear, measurable
+                            financial milestones together.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3><span class="badge badge-accent">Step 2</span> Strategy</h3>
+                        <p>We build the technical plan — budget allocation, debt payoff sequencing, savings targets, and
+                            investment entry points.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3><span class="badge badge-accent">Step 3</span> Optimization</h3>
+                        <p>Life changes, and so should your plan. We refine and adjust your strategy through regular
+                            check-ins and data analysis.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3><span class="badge badge-accent">Step 4</span> Mastery</h3>
+                        <p>We teach you to fish. By the end, you'll have the knowledge and confidence to manage your
+                            finances independently.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Numbers -->
+    <section class="section-padding" style="background: var(--gradient-primary);">
+        <div class="container text-center ">
+            <div class="section-header animate-on-scroll" style="margin-bottom: 3rem;">
+                <span class="section-label" style="color: var(--accent-light);">Our Impact</span>
+                <h2 style="color: white;">Numbers That Speak for Themselves</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="grid-3" style="max-width: 800px; margin: 0 auto; display: flex; justify-content: space-evenly;">
+                <div class="animate-on-scroll delay-1" style="text-align: center;">
+                    <span style="font-size: 3rem; font-weight: 700; color: var(--accent-light); display: block;"
+                        data-count="10" data-suffix="+">0</span>
+                    <p style="color: rgba(255,255,255,0.7); margin-top: 0.5rem;">Years in Business</p>
+                </div>
+                <div class="animate-on-scroll delay-2" style="text-align: center;">
+                    <span style="font-size: 3rem; font-weight: 700; color: var(--accent-light); display: block;"
+                        data-count="2000" data-suffix="+">0</span>
+                    <p style="color: rgba(255,255,255,0.7); margin-top: 0.5rem;">Clients Served</p>
+                </div>
+                <div class="animate-on-scroll delay-3" style="text-align: center;">
+                    <span
+                        style="font-size: 3rem; font-weight: 700; color: var(--accent-light); display: block;">5/5</span>
+                    <p style="color: rgba(255,255,255,0.7); margin-top: 0.5rem;">Average Rating</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><i class="fa-solid fa-chart-line"></i> FinCoach</a>
+                    <p>Empowering individuals and families to achieve lasting financial freedom through expert coaching
+                        and personalized strategies.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html">Sign In</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Budgeting</a></li>
+                        <li><a href="services.html">Debt Payoff</a></li>
+                        <li><a href="services.html">Investing</a></li>
+                        <li><a href="services.html">Retirement</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:hello@fincoach.com"><i class="fa-solid fa-envelope"
+                                    style="margin-right:0.5rem;color:var(--accent);"></i>hello@fincoach.com</a></li>
+                        <li><a href="tel:+15551234567"><i class="fa-solid fa-phone"
+                                    style="margin-right:0.5rem;color:var(--accent);"></i>+1 (555) 123-4567</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FinCoach. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

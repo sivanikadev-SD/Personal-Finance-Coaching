@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - FinCoach</title>
+    <meta name="description"
+        content="Get in touch with FinCoach. Book your free consultation and start your journey to financial freedom.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%230F172A'/><polyline points='10,70 30,45 50,55 70,25 90,35' stroke='%2314B8A6' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/><polyline points='75,25 90,25 90,40' stroke='%2314B8A6' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><i class="fa-solid fa-chart-line"></i> FinCoach</a>
+            <div class="nav-toggle"><i class="fa-solid fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="home2.html">Home 2</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="dashboard.html" style="font-weight: 600;">Dashboard</a></li>
+                <li><a href="admin-dashboard.html" style="font-weight: 600;">Admin</a></li>
+                <li><a href="login.html" class="btn btn-primary"
+                        style="padding: 0.5rem 1.25rem;color:var(--primary-color) ;">Sign
+                        In</a></li>
+                <li class="theme-controls">
+                    <button id="theme-toggle" class="control-btn" title="Toggle Dark/Light Mode"><i
+                            class="fa-solid fa-moon"></i></button>
+                    <button id="dir-toggle" class="control-btn" title="Toggle RTL/LTR"><i
+                            class="fa-solid fa-right-left"></i> RTL</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="page-banner"
+        style="background-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&q=80&w=1920');">
+        <div class="banner-content animate-fade-in">
+            <span class="subtitle"><i class="fa-solid fa-paper-plane"></i> Reach Out</span>
+            <h1>Let's Start the Conversation</h1>
+            <p>Ready to transform your financial future? We'd love to hear from you. Book a free consultation or drop us
+                a message.</p>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="section-padding bg-white">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
+
+                <!-- Contact Form -->
+                <div style="flex: 1.5; min-width: 350px;" class="animate-on-scroll">
+                    <h2>Send Us a Message</h2>
+                    <p style="margin-bottom: 2rem;">Fill out the form below and we'll get back to you within 24 hours.
+                    </p>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="e.g., Free Consultation Request" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" rows="5" placeholder="Tell us about your financial goals..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;"><i
+                                class="fa-solid fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div style="flex: 1; min-width: 280px;" class="animate-on-scroll delay-2">
+                    <h2>Contact Info</h2>
+                    <p style="margin-bottom: 2rem;">Prefer to reach out directly? Here's how you can find us.</p>
+
+                    <div class="card" style="margin-bottom: 1rem;">
+                        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <h4>Office Address</h4>
+                        <p>350 Fifth Avenue, Suite 4200<br>New York, NY 10118</p>
+                    </div>
+                    <div class="card" style="margin-bottom: 1rem;">
+                        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <h4>Email Us</h4>
+                        <p><a href="mailto:hello@fincoach.com"
+                                style="color: var(--accent); font-weight: 500;">hello@fincoach.com</a></p>
+                    </div>
+                    <div class="card" style="margin-bottom: 1rem;">
+                        <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                        <h4>Call Us</h4>
+                        <p><a href="tel:+15551234567" style="color: var(--accent); font-weight: 500;">+1 (555)
+                                123-4567</a></p>
+                    </div>
+                    <div class="card">
+                        <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+                        <h4>Office Hours</h4>
+                        <p>Mon – Fri: 9:00 AM – 6:00 PM EST<br>Sat: 10:00 AM – 2:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map -->
+    <section style="height: 400px; width: 100%;">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><i class="fa-solid fa-chart-line"></i> FinCoach</a>
+                    <p>Empowering individuals and families to achieve lasting financial freedom through expert coaching
+                        and personalized strategies.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html">Sign In</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Budgeting</a></li>
+                        <li><a href="services.html">Debt Payoff</a></li>
+                        <li><a href="services.html">Investing</a></li>
+                        <li><a href="services.html">Retirement</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:hello@fincoach.com"><i class="fa-solid fa-envelope"
+                                    style="margin-right:0.5rem;color:var(--accent);"></i>hello@fincoach.com</a></li>
+                        <li><a href="tel:+15551234567"><i class="fa-solid fa-phone"
+                                    style="margin-right:0.5rem;color:var(--accent);"></i>+1 (555) 123-4567</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FinCoach. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
