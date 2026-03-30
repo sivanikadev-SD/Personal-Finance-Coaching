@@ -213,4 +213,24 @@ document.addEventListener('DOMContentLoaded', () => {
             lastScroll = currentScroll;
         });
     }
+
+    // ═══════════════════════════════════════════════════════════
+    // 11. Password Visibility Toggle
+    // ═══════════════════════════════════════════════════════════
+    const passwordToggles = document.querySelectorAll('.password-toggle');
+    passwordToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const wrapper = toggle.closest('.password-wrapper');
+            const input = wrapper.querySelector('input');
+            const icon = toggle.querySelector('i');
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fa-solid fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fa-solid fa-eye';
+            }
+        });
+    });
 });
