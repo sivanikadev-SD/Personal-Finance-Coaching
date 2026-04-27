@@ -479,6 +479,170 @@
                 padding: 1.25rem;
             }
         }
+        /* Additional Admin Enhancements */
+        .admin-grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 1200px) {
+            .admin-grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .activity-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .activity-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.75rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .activity-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .activity-item::before {
+            content: '';
+            position: absolute;
+            left: -1.65rem;
+            top: 0.25rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--card-bg);
+            z-index: 1;
+        }
+
+        .activity-time {
+            font-size: 0.75rem;
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-content {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+        }
+
+        .activity-content strong {
+            color: var(--primary);
+        }
+
+        .health-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            height: 100%;
+        }
+
+        .chart-placeholder {
+            height: 250px;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            padding: 20px 0;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: var(--gradient-accent);
+            border-radius: 4px 4px 0 0;
+            transition: height 1s ease;
+            position: relative;
+            min-height: 5px;
+        }
+
+        .chart-bar:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        .chart-bar::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.65rem;
+            color: var(--secondary);
+        }
+
+        .revenue-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .revenue-stat .amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .revenue-stat .trend {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .trend.up { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+        .trend.down { background: rgba(248, 113, 113, 0.1); color: #f87171; }
+
+        .platform-alerts {
+            margin-bottom: 2rem;
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: var(--radius-md);
+            margin-bottom: 0.75rem;
+        }
+
+        .alert-item.info {
+            background: rgba(59, 130, 246, 0.05);
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .alert-icon {
+            font-size: 1.25rem;
+        }
+
+        .alert-item.warning .alert-icon { color: #f59e0b; }
+        .alert-item.info .alert-icon { color: #3b82f6; }
+
+        .alert-content {
+            flex: 1;
+            font-size: 0.85rem;
+        }
+
+        .alert-content strong {
+            display: block;
+            margin-bottom: 0.1rem;
+        }
     </style>
 </head>
 
@@ -533,12 +697,39 @@
                 <!-- 1. Overview Section -->
                 <section id="overview" class="content-section">
                     <div class="admin-welcome">
-                        <h2>Admin Dashboard 🛡️</h2>
-                        <p>Monitor platform health, manage users, and track growth metrics at a glance.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                            <div>
+                                <h2>Admin Dashboard 🛡️</h2>
+                                <p>Monitor platform health, manage users, and track growth metrics at a glance.</p>
+                            </div>
+                            <div style="display: flex; gap: 0.75rem;">
+                                <button class="btn btn-light" style="padding: 0.5rem 1rem; font-size: 0.8rem;"><i class="fa-solid fa-download"></i> Export Report</button>
+                                <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;"><i class="fa-solid fa-plus"></i> Quick Action</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="grid-3"
-                        style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 2rem;">
+                    <!-- Platform Alerts -->
+                    <div class="platform-alerts">
+                        <div class="alert-item warning">
+                            <div class="alert-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            <div class="alert-content">
+                                <strong>High Server Load Detected</strong>
+                                <span>Traffic spike from North America region. System is scaling...</span>
+                            </div>
+                            <button class="action-btn"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <div class="alert-item info">
+                            <div class="alert-icon"><i class="fa-solid fa-circle-info"></i></div>
+                            <div class="alert-content">
+                                <strong>System Maintenance Scheduled</strong>
+                                <span>Scheduled maintenance window: Oct 30, 02:00 - 04:00 UTC.</span>
+                            </div>
+                            <button class="action-btn"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="grid-4" style="margin-bottom: 2rem;">
                         <div class="stat-card">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
@@ -557,6 +748,14 @@
                         </div>
                         <div class="stat-card">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="stat-icon"><i class="fa-solid fa-user-check"></i></div>
+                                <span class="stat-change up"><i class="fa-solid fa-arrow-up"></i> 5%</span>
+                            </div>
+                            <div class="stat-value">342</div>
+                            <div class="stat-label">Active Subscriptions</div>
+                        </div>
+                        <div class="stat-card">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <div class="stat-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
                             </div>
                             <div class="stat-value">98%</div>
@@ -564,37 +763,82 @@
                         </div>
                     </div>
 
-                    <!-- System Health -->
-                    <div class="dashboard-card" style="padding: 1.5rem;">
-                        <h4 style="margin-bottom: 1.25rem;"><i class="fa-solid fa-server"
-                                style="color: var(--accent); margin-right: 0.5rem;"></i> System Health</h4>
-                        <div class="health-meter">
-                            <span class="health-label">Server Load</span>
-                            <div class="health-bar-wrap">
-                                <div class="health-bar-fill" style="width: 24%; background: #10b981;"></div>
+                    <div class="admin-grid-layout">
+                        <!-- Revenue Chart -->
+                        <div class="dashboard-card" style="padding: 1.5rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                                <h4 style="margin: 0;">Revenue Overview</h4>
+                                <select style="padding: 0.25rem 0.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.8rem; background: var(--surface);">
+                                    <option>Last 7 Days</option>
+                                    <option>Last 30 Days</option>
+                                    <option>Last 6 Months</option>
+                                </select>
                             </div>
-                            <span class="health-value" style="color: #10b981;">24%</span>
+                            <div class="revenue-stat">
+                                <span class="amount">$12,450.00</span>
+                                <span class="trend up"><i class="fa-solid fa-arrow-up"></i> 14.5%</span>
+                                <span style="font-size: 0.8rem; color: var(--secondary); margin-left: auto;">vs last week</span>
+                            </div>
+                            <div class="chart-placeholder">
+                                <div class="chart-bar" style="height: 40%;" data-label="Mon"></div>
+                                <div class="chart-bar" style="height: 65%;" data-label="Tue"></div>
+                                <div class="chart-bar" style="height: 50%;" data-label="Wed"></div>
+                                <div class="chart-bar" style="height: 85%;" data-label="Thu"></div>
+                                <div class="chart-bar" style="height: 70%;" data-label="Fri"></div>
+                                <div class="chart-bar" style="height: 95%;" data-label="Sat"></div>
+                                <div class="chart-bar" style="height: 60%;" data-label="Sun"></div>
+                            </div>
                         </div>
-                        <div class="health-meter">
-                            <span class="health-label">Storage Used</span>
-                            <div class="health-bar-wrap">
-                                <div class="health-bar-fill" style="width: 62%; background: #f59e0b;"></div>
+
+                        <!-- System Health -->
+                        <div class="health-card">
+                            <h4 style="margin-bottom: 1.5rem;"><i class="fa-solid fa-server" style="color: var(--accent); margin-right: 0.5rem;"></i> System Health</h4>
+                            <div class="health-meter">
+                                <span class="health-label">Server Load</span>
+                                <div class="health-bar-wrap">
+                                    <div class="health-bar-fill" style="width: 24%; background: #10b981;"></div>
+                                </div>
+                                <span class="health-value" style="color: #10b981;">24%</span>
                             </div>
-                            <span class="health-value" style="color: #f59e0b;">62%</span>
-                        </div>
-                        <div class="health-meter">
-                            <span class="health-label">Memory</span>
-                            <div class="health-bar-wrap">
-                                <div class="health-bar-fill" style="width: 38%; background: var(--accent);"></div>
+                            <div class="health-meter">
+                                <span class="health-label">Storage Used</span>
+                                <div class="health-bar-wrap">
+                                    <div class="health-bar-fill" style="width: 62%; background: #f59e0b;"></div>
+                                </div>
+                                <span class="health-value" style="color: #f59e0b;">62%</span>
                             </div>
-                            <span class="health-value" style="color: var(--accent);">38%</span>
-                        </div>
-                        <div class="health-meter">
-                            <span class="health-label">API Uptime</span>
-                            <div class="health-bar-wrap">
-                                <div class="health-bar-fill" style="width: 99.9%; background: #10b981;"></div>
+                            <div class="health-meter">
+                                <span class="health-label">Memory</span>
+                                <div class="health-bar-wrap">
+                                    <div class="health-bar-fill" style="width: 38%; background: var(--accent);"></div>
+                                </div>
+                                <span class="health-value" style="color: var(--accent);">38%</span>
                             </div>
-                            <span class="health-value" style="color: #10b981;">99.9%</span>
+                            <div class="health-meter">
+                                <span class="health-label">API Uptime</span>
+                                <div class="health-bar-wrap">
+                                    <div class="health-bar-fill" style="width: 99.9%; background: #10b981;"></div>
+                                </div>
+                                <span class="health-value" style="color: #10b981;">99.9%</span>
+                            </div>
+                            
+                            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                                <h4 style="margin-bottom: 1rem; font-size: 0.9rem;">Recent Activity</h4>
+                                <div class="activity-timeline">
+                                    <div class="activity-item">
+                                        <span class="activity-time">10 mins ago</span>
+                                        <div class="activity-content"><strong>New User</strong> Sarah J. registered</div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span class="activity-time">45 mins ago</span>
+                                        <div class="activity-content"><strong>Payment</strong> received from Michael C. ($49.00)</div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span class="activity-time">2 hours ago</span>
+                                        <div class="activity-content"><strong>System</strong> Backup completed successfully</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -604,7 +848,12 @@
                     <div
                         style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
                         <h3 style="margin: 0;">User Directory</h3>
-                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+                            <div style="display: flex; background: var(--surface); padding: 0.25rem; border-radius: var(--radius-full); gap: 0.25rem;">
+                                <button class="control-btn active" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">All</button>
+                                <button class="control-btn" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Premium</button>
+                                <button class="control-btn" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Basic</button>
+                            </div>
                             <input type="text" placeholder="Search users..."
                                 style="padding: 0.5rem 1rem; border: 1.5px solid var(--border-color); border-radius: var(--radius-full); font-size: 0.85rem; font-family: var(--font-body); background: var(--card-bg); color: var(--text-dark);">
                             <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;"><i
@@ -700,8 +949,12 @@
                     <div
                         style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
                         <h3 style="margin: 0;">Curriculum & Assets</h3>
-                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;"><i
-                                class="fa-solid fa-folder-plus"></i> New Module</button>
+                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+                            <input type="text" placeholder="Search assets..."
+                                style="padding: 0.5rem 1rem; border: 1.5px solid var(--border-color); border-radius: var(--radius-full); font-size: 0.85rem; font-family: var(--font-body); background: var(--card-bg); color: var(--text-dark);">
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;"><i
+                                    class="fa-solid fa-folder-plus"></i> New Module</button>
+                        </div>
                     </div>
                     <div class="grid-3">
                         <div class="content-asset-card">
@@ -736,10 +989,15 @@
 
                 <!-- 4. Analytics Section -->
                 <section id="analytics" class="content-section" style="display: none;">
-                    <h3 style="margin-bottom: 1.5rem;">Platform Analytics</h3>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h3 style="margin: 0;">Platform Analytics</h3>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="control-btn"><i class="fa-solid fa-calendar"></i> This Month</button>
+                            <button class="control-btn primary"><i class="fa-solid fa-file-pdf"></i> PDF Report</button>
+                        </div>
+                    </div>
 
-                    <div class="grid-3"
-                        style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 2rem;">
+                    <div class="grid-4" style="margin-bottom: 2rem;">
                         <div class="stat-card" style="text-align: center;">
                             <div class="stat-icon" style="margin: 0 auto;"><i class="fa-solid fa-user-plus"></i></div>
                             <div class="stat-value" style="margin-top: 0.75rem;">48</div>
@@ -748,23 +1006,66 @@
                         <div class="stat-card" style="text-align: center;">
                             <div class="stat-icon" style="margin: 0 auto;"><i class="fa-solid fa-clock"></i></div>
                             <div class="stat-value" style="margin-top: 0.75rem;">12.5</div>
-                            <div class="stat-label">Avg. Hours per User</div>
+                            <div class="stat-label">Avg. Session Duration</div>
                         </div>
                         <div class="stat-card" style="text-align: center;">
                             <div class="stat-icon" style="margin: 0 auto;"><i class="fa-solid fa-star"></i></div>
                             <div class="stat-value" style="margin-top: 0.75rem;">4.9</div>
                             <div class="stat-label">Avg. Coach Rating</div>
                         </div>
+                        <div class="stat-card" style="text-align: center;">
+                            <div class="stat-icon" style="margin: 0 auto;"><i class="fa-solid fa-percent"></i></div>
+                            <div class="stat-value" style="margin-top: 0.75rem;">82%</div>
+                            <div class="stat-label">Retention Rate</div>
+                        </div>
                     </div>
 
-                    <div class="dashboard-card" style="padding: 1.5rem;">
-                        <h4 style="margin-bottom: 1rem;">Revenue Trend</h4>
-                        <div
-                            style="background: var(--surface); border-radius: var(--radius-lg); padding: 2rem; min-height: 200px; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--border-color);">
-                            <div style="text-align: center; color: var(--secondary);">
-                                <i class="fa-solid fa-chart-line"
-                                    style="font-size: 3rem; color: var(--accent); opacity: 0.4; display: block; margin-bottom: 1rem;"></i>
-                                <p>Revenue chart will appear here with real data integration.</p>
+                    <div class="admin-grid-layout">
+                        <div class="dashboard-card" style="padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1.5rem;">User Growth Trend</h4>
+                            <div class="chart-placeholder" style="height: 300px; padding: 40px 10px;">
+                                <div class="chart-bar" style="height: 30%;" data-label="May"></div>
+                                <div class="chart-bar" style="height: 45%;" data-label="Jun"></div>
+                                <div class="chart-bar" style="height: 40%;" data-label="Jul"></div>
+                                <div class="chart-bar" style="height: 60%;" data-label="Aug"></div>
+                                <div class="chart-bar" style="height: 55%;" data-label="Sep"></div>
+                                <div class="chart-bar" style="height: 90%;" data-label="Oct"></div>
+                            </div>
+                        </div>
+                        <div class="dashboard-card" style="padding: 1.5rem;">
+                            <h4 style="margin-bottom: 1.5rem;">Subscription Distribution</h4>
+                            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;">
+                                        <span>Premium Plan</span>
+                                        <strong>65%</strong>
+                                    </div>
+                                    <div class="health-bar-wrap">
+                                        <div class="health-bar-fill" style="width: 65%; background: var(--gradient-accent);"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;">
+                                        <span>Basic Plan</span>
+                                        <strong>25%</strong>
+                                    </div>
+                                    <div class="health-bar-wrap">
+                                        <div class="health-bar-fill" style="width: 25%; background: var(--accent-light);"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;">
+                                        <span>Trial Users</span>
+                                        <strong>10%</strong>
+                                    </div>
+                                    <div class="health-bar-wrap">
+                                        <div class="health-bar-fill" style="width: 10%; background: var(--secondary);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 2rem; padding: 1rem; background: var(--surface); border-radius: var(--radius-md); font-size: 0.8rem;">
+                                <i class="fa-solid fa-lightbulb" style="color: #f59e0b; margin-right: 0.5rem;"></i>
+                                <span>Conversion rate increased by <strong>2.4%</strong> since last month.</span>
                             </div>
                         </div>
                     </div>

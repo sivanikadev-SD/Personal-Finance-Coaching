@@ -423,7 +423,7 @@ img {
 }
 
 /* ─── Mobile Navigation ─── */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .nav-toggle {
         display: block;
     }
@@ -484,15 +484,44 @@ img {
         gap: 0.75rem;
     }
 
+    /* Hide the original button in mobile actions as it's now in the list */
+    .nav-links.active + .nav-actions .btn-primary {
+        display: none;
+    }
+
     .nav-action-link {
         font-size: 1.05rem;
         padding: 0.875rem 1.25rem;
     }
 
-    .theme-controls {
+    /* Mobile CTA inside menu */
+    .nav-links li .nav-cta {
         margin-top: 1rem;
+        background: var(--gradient-accent);
+        color: white !important;
+        padding: 0.75rem 2.5rem;
+        border-radius: var(--radius-full);
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+    }
+
+    [data-theme="dark"] .nav-links li .nav-cta {
+        color: white !important;
+    }
+
+    .theme-controls {
+        margin-top: 1.5rem;
         padding-top: 1rem;
         border-top: 1px solid var(--border-color);
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+/* Hide mobile CTA on desktop */
+@media (min-width: 1025px) {
+    .nav-cta {
+        display: none;
     }
 }
 
@@ -1309,6 +1338,8 @@ img {
     color: white;
     margin-bottom: 3rem;
     font-size: 1.75rem;
+    position: relative;
+    z-index: 10;
 }
 
 .auth-form-side {
